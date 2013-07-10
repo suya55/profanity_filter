@@ -33,13 +33,12 @@ module ProfanityFilter
   end
 
   class Base
-    cattr_accessor :replacement_text, :dictionary_file, :dictionary
-    @@replacement_text = '@#$%'
-    @@dictionary_file  = File.join(File.dirname(__FILE__), '../config/dictionary.yml')
+    REPLACEMENT_TEXT = '@#$%'
+    DICTIONARY_FILE = File.join(File.dirname(__FILE__), '../config/dictionary.yml')
 
     class << self
       def dictionary
-        @@dictionary ||= YAML.load_file(@@dictionary_file)
+        @@dictionary ||= YAML.load_file(DICTIONARY_FILE)
       end
       
       def banned?(word = '')
@@ -80,7 +79,7 @@ module ProfanityFilter
          when 'stars'
            word = '*' * (word.size)
          else
-           replacement_text
+           REPLACEMENT_TEXT
          end
        end
     end

@@ -4,8 +4,8 @@ require 'yaml'
 require 'active_record'
 require 'active_support/all'
 
-require File.dirname(__FILE__) + '/../lib/profanity_filter'
-require File.dirname(__FILE__) + '/connection_and_schema'
+require_relative '../lib/profanity_filter'
+require_relative './connection_and_schema'
 
 ActiveRecord::Base.send(:include, ProfanityFilter)
 

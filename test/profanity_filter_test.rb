@@ -2,7 +2,7 @@ require 'test/unit'
 require 'rubygems'
 require 'yaml'
 
-require File.dirname(__FILE__) + '/../lib/profanity_filter'
+require_relative '../lib/profanity_filter'
 
 class BasicProfanityFilterTest < Test::Unit::TestCase
   def test_basic_profanity_filter_does_not_modify_clean_words

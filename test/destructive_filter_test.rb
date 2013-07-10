@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/test_harness'
+require_relative './test_harness'
 
 module BasicPostHelper
   class Post < ActiveRecord::Base
