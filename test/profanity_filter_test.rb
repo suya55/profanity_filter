@@ -30,6 +30,7 @@ class BasicProfanityFilterTest < Test::Unit::TestCase
     assert_equal '@#$%', ProfanityFilter::Base.clean('f-u-c-k')
     assert_equal '@#$%', ProfanityFilter::Base.clean('f.u.c.k')
     assert_equal 'happy-@#$%', ProfanityFilter::Base.clean('happy-fuck')
+    assert_equal 'happy_@#$%', ProfanityFilter::Base.clean('happy_fuck')
   end
   
   def test_knows_when_text_is_not_profane
