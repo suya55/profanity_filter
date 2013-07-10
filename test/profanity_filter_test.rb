@@ -169,4 +169,10 @@ class StarsProfanityFilterTest < Test::Unit::TestCase
     assert_equal '****', ProfanityFilter::Base.clean('f.u.c.k', 'stars')
     assert_equal 'happy-****', ProfanityFilter::Base.clean('happy-fuck', 'stars')
   end
+
+  def test_use_custom_disctionnary
+    ProfanityFilter::Base.dictionary_file = "test/custom_dictionary.yml"
+    assert_equal 'custom', ProfanityFilter::Base.clean('dirty', 'dictionary')
+    ProfanityFilter::Base.dictionary_file = ProfanityFilter::Base::DEFAULT_DICTIONARY_FILE
+  end
 end

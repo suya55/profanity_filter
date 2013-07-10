@@ -34,11 +34,17 @@ module ProfanityFilter
 
   class Base
     REPLACEMENT_TEXT = '@#$%'
-    DICTIONARY_FILE = File.join(File.dirname(__FILE__), '../config/dictionary.yml')
+    DEFAULT_DICTIONARY_FILE = File.join(File.dirname(__FILE__), '../config/dictionary.yml')
 
     class << self
+      @@dictionary_file = DEFAULT_DICTIONARY_FILE
       def dictionary
-        @@dictionary ||= YAML.load_file(DICTIONARY_FILE)
+        @@dictionary ||= YAML.load_file(@@dictionary_file)
+      end
+
+      def dictionary_file=(path)
+        @@dictionary_file = path
+        @@dictionary = nil
       end
       
       def banned?(word = '')
