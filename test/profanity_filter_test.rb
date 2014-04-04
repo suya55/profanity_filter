@@ -170,6 +170,12 @@ class StarsProfanityFilterTest < Test::Unit::TestCase
     assert_equal 'happy-****', ProfanityFilter::Base.clean('happy-fuck', 'stars')
   end
 
+def test_stars_profanity_filter_replaces_punctuation_spaced_profane_words_for_korean
+    assert_equal '** 아이가 쿠키', ProfanityFilter::Base.clean('미친 아이가 쿠키', 'stars')
+    assert_equal '*', ProfanityFilter::Base.clean('띨', 'stars')
+end
+
+
   def test_use_custom_disctionnary
     ProfanityFilter::Base.dictionary_file = "test/custom_dictionary.yml"
     assert_equal 'custom', ProfanityFilter::Base.clean('dirty', 'dictionary')

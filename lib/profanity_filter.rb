@@ -62,14 +62,15 @@ module ProfanityFilter
       end
 
       def clean_word(word)
-         return word unless(word.strip.size > 2)
+         return word if word.empty?
 
-         if word.index(/[\W_]/)
-           word = word.split(/([\W_])/).collect{ |subword| clean_word(subword) }.join
-           concat = word.gsub(/[\W_]/, '')
+         if word.index(/[[^a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣_]_]/)
+          if word.size > 1
+            word = word.split(/([[^a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣_]_])/).reject{|w| w.empty?}.collect{ |subword| clean_word(subword) }.join
+          end
+           concat = word.gsub(/[[^a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣_]_]/, '')
            word = concat if banned? concat
          end
-
          banned?(word) ? replacement(word) : word
        end
 
